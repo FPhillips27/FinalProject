@@ -23,3 +23,31 @@ Feature: Users should be able to log in.
     And I will not see the text "Logged in as: testuser@gmail.com"
     And I will see the text "Login"
     
+  Scenario: As a user who enters the wrong password, I should be told that I'm wrong.
+    Given that I am on the main page
+    When I select "Settings" from the menu
+    Then I will see the text "Login"
+    When I input "testuser@gmail.com" for the field "username_input"
+    And I input a bad password
+    And I click "Submit"
+    Then I will see the text "Sorry, either your user name or email is incorrect."
+    And I will not see the text "Logged in as: testuser@gmail.com"
+
+  Scenario: As a user, if I enter the wrong password too many times, I should be told my account is locked.
+    Given that I am on the main page
+    When I select "Settings" from the menu
+    Then I will see the text "Login"
+    When I input "testuser@gmail.com" for the field "username_input"
+    And I input a bad password
+    And I click "Submit"
+    And I input a bad password
+    And I click "Submit"
+    And I input a bad password
+    And I click "Submit"
+    And I input a bad password
+    And I click "Submit"
+    And I input a bad password
+    And I click "Submit"
+    Then I will see the text "Sorry, your account is locked."
+    And I will not see the text "Logged in as: testuser@gmail.com"
+  

@@ -44,4 +44,3 @@ Feature: Meditation timer
     #There will also be a bell which goes off, but still unsure how to test for that in Cucumber.
     And I will not see the element ".timer"
     And I will not see the element ".counter"
-    
